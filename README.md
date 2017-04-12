@@ -1,4 +1,4 @@
-1. 查看已有集群信息
+## 1. 查看已有集群信息
 	* 进入容器内部 `kubectl exec heketi-pod-name -ti bash`
 	*  获取集群列表
 	 ```
@@ -19,7 +19,7 @@
 		```
 		state 为 online说明节点正常
 
-2. 加载 glusterfs 集群
+## 2. 加载 glusterfs 集群
 	* 准备 topology.json
 	```
 	{
@@ -88,7 +88,7 @@
 	```
 	如果成功, 能看到 success 信息.
 
-3. 删除 glusterfs 集群配置
+## 3. 删除 glusterfs 集群配置
 	有时, 由于网络等原因, topology.json 会加载失败. 此时需要手动清除原有的集群节点
 	*  获取集群列表
 	 ```
