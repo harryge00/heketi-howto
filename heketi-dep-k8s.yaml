@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: heketi
+  labels:
+    caicloud-app-name: heketi
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        caicloud-app-name: heketi
+    spec:
+      containers:
+      - name: heketi
+        image: cargo.caicloudprivatetest.com/caicloud/heketi:v0.0.2
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /etc/heketi
+          name: heketi-volume
+        - mountPath: /root/.ssh
+          name: ssh-secret
+        env:
+          - name: CLUSTERS
+            value: "192.168.16.117,192.168.16.118,192.168.16.119" # Change this according to your glusterfs setting
+          - name: PARTITION
+            value: "/dev/vdb" # Change this. Should be the partition for heketi.
+      volumes:
+      - name: ssh-secret
+        hostPath:
+          path: /root/.ssh
+      - name: heketi-volume
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: heketi-vol
