@@ -28,8 +28,8 @@ spec:
             value: "/dev/vdb" # Change this. Should be the partition for heketi.
       volumes:
       - name: ssh-secret
-        hostPath:
-          path: /root/.ssh
+        secret:
+          secretName: ssh-secret
       - name: heketi-volume
         glusterfs:
           endpoints: glusterfs-cluster
