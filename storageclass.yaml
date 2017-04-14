@@ -1,0 +1,7 @@
+apiVersion: storage.k8s.io/v1beta1
+kind: StorageClass
+metadata:
+  name: heketi-storage
+provisioner: kubernetes.io/glusterfs
+parameters:
+  resturl: "http://10.254.218.75:8080"
