@@ -4,4 +4,4 @@ metadata:
   name: heketi-storage
 provisioner: kubernetes.io/glusterfs
 parameters:
-  resturl: "http://10.254.218.75:8080"
+  resturl: "http://10.254.218.75:8080" # ip is the cluster ip of heketi service
