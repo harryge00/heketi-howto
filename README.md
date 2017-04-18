@@ -123,5 +123,5 @@
 Heketi需要能通过ssh私钥访问到所有glusterfs节点, 所以要先创建这样的ssh密钥.
 这里假设已经有了: `/root/.ssh`
 ```
-kubectl create secret generic ssh-secret --from-file=id_rsa=/root/.ssh/id_rsa --from-file=ssh-id_rsa.pub=/root/.ssh/id_rsa.pub
+kubectl create secret generic ssh-secret --from-file=id_rsa=/root/.ssh/id_rsa --from-file=id_rsa.pub=/root/.ssh/id_rsa.pub
 ```
