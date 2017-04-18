@@ -26,6 +26,10 @@ spec:
             value: "192.168.16.117,192.168.16.118,192.168.16.119" # Change this according to your glusterfs setting
           - name: PARTITION
             value: "/dev/vdb" # Change this. Should be the partition for heketi.
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "init_heketi.sh"]
       volumes:
       - name: ssh-secret
         secret:
