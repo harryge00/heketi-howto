@@ -1,0 +1,37 @@
+apiVersion: v1
+data:
+  heketi.json: |
+    {
+        "_port_comment": "Heketi Server Port Number",
+        "port" : "8080",
+
+        "_use_auth": "Enable JWT authorization. Please enable for deployment",
+        "use_auth" : false,
+
+        "_jwt" : "Private keys for access",
+        "jwt" : {
+            "_admin" : "Admin has access to all APIs",
+            "admin" : {
+                "key" : "password"
+            },
+            "_user" : "User only has access to /volumes endpoint",
+            "user" : { 
+                "key" : "password"
+            }
+        },
+
+        "_glusterfs_comment": "GlusterFS Configuration",
+        "glusterfs" : {
+            "_executor_comment": "Execute plugin. Possible choices: mock, ssh",
+            "executor" : "ssh",
+            "sshexec": {
+                "user": "root",
+                "keyfile": "/root/.ssh/id_rsa"
+            },
+            "_db_comment": "Database file name",
+            "db" : "/var/lib/heketi.db"
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: heketi-config

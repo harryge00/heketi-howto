@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: heketi
+  labels:
+    app: heketi
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: heketi
+    spec:
+      containers:
+      - name: heketi
+        image: heketi/heketi:dev
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /etc/heketi
+          name: heketi-config
+        - mountPath: /root/.ssh
+          name: ssh-volume
+      volumes:
+      - name: ssh-secret
+        secret:
+          secretName: ssh-key-secret
+      - configMap:
+          name: heketi-config
+        name: heketi-config
+
